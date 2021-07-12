@@ -3,12 +3,15 @@ import { Route } from "react-router-dom"
 import { Home } from "./Home"
 import { AnimalProvider } from "./animal/AnimalProvider"
 import { AnimalList } from "./animal/AnimalList"
-import { CustomerProvider } from "./customers/CustomerProvider"
+import { AnimalForm } from "./animal/AnimalForm"
 import { CustomerList } from "./customers/CustomerList"
-// import { AnimalCard } from "./animal/AnimalCard"
-import { EmployeeCard } from "./employees/EmployeeCard"
-import { LocationCard } from "./locations/LocationCard"
-// import { CustomerCard } from "./customers/CustomerCard"
+import { CustomerProvider } from "./customers/CustomerProvider"
+import { EmployeeList } from "./employees/EmployeeList"
+import { EmployeeProvider } from "./employees/EmployeeProvider"
+import { EmployeeForm } from "./employees/EmployeeForm"
+import { LocationList } from "./locations/LocationList"
+import { LocationProvider } from "./locations/LocationProvider"
+
 
 export const ApplicationViews = () => {
     return (
@@ -23,15 +26,36 @@ export const ApplicationViews = () => {
                 <Route exact path="/animals">
                     <AnimalList />
                 </Route>
+                
+                <LocationProvider>
+                    <CustomerProvider>
+                        <Route exact path="/animals/create">
+                            <AnimalForm />
+                        </Route>
+                    </CustomerProvider>
+                </LocationProvider>
             </AnimalProvider>
+            
 
-            <Route path="/employees">
-                <EmployeeCard />
-            </Route>
+            <EmployeeProvider>
+                <Route exact path="/employees">
+                    <EmployeeList />
+                </Route>
 
-            <Route path="/locations">
-                <LocationCard />
-            </Route>
+                <LocationProvider>
+                    <CustomerProvider>
+                        <Route exact path="/employees/create">
+                            <EmployeeForm />
+                        </Route>
+                    </CustomerProvider>
+                </LocationProvider>
+            </EmployeeProvider>
+
+            <LocationProvider>
+                <Route exact path="/locations">
+                    <LocationList />
+                </Route>
+            </LocationProvider>
 
             <CustomerProvider>
                 <Route exact path="/customers">
