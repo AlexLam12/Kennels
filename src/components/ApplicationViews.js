@@ -4,14 +4,17 @@ import { Home } from "./Home"
 import { AnimalProvider } from "./animal/AnimalProvider"
 import { AnimalList } from "./animal/AnimalList"
 import { AnimalForm } from "./animal/AnimalForm"
+import { AnimalDetail } from "./animal/AnimalDetail"
 import { CustomerList } from "./customers/CustomerList"
 import { CustomerProvider } from "./customers/CustomerProvider"
 import { EmployeeList } from "./employees/EmployeeList"
 import { EmployeeProvider } from "./employees/EmployeeProvider"
 import { EmployeeForm } from "./employees/EmployeeForm"
+import { EmployeeDetail } from "./employees/EmployeeDetail"
 import { LocationList } from "./locations/LocationList"
 import { LocationProvider } from "./locations/LocationProvider"
 import { LocationForm } from "./locations/LocationForm"
+import { LocationDetail } from "./locations/LocationDetail"
 
 
 export const ApplicationViews = () => {
@@ -33,8 +36,18 @@ export const ApplicationViews = () => {
                         <Route exact path="/animals/create">
                             <AnimalForm />
                         </Route>
+                        <Route path="/animals/edit/:animalId(\d+)">
+                            <AnimalForm />
+                        </Route>
                     </CustomerProvider>
                 </LocationProvider>
+            </AnimalProvider>
+
+
+            <AnimalProvider>
+                <Route exact path="/animals/detail/:animalId(\d+)">
+		            <AnimalDetail />
+	            </Route>
             </AnimalProvider>
             
 
@@ -52,6 +65,12 @@ export const ApplicationViews = () => {
                 </LocationProvider>
             </EmployeeProvider>
 
+            <EmployeeProvider>
+                <Route exact path="/employees/detail/:employeeId(\d+)">
+		            <EmployeeDetail />
+	            </Route>
+            </EmployeeProvider>
+
             <LocationProvider>
                 <Route exact path="/locations">
                     <LocationList />
@@ -62,6 +81,12 @@ export const ApplicationViews = () => {
                             <LocationForm />
                         </Route>
                     </EmployeeProvider>
+            </LocationProvider>
+
+            <LocationProvider>
+                <Route exact path="/locations/detail/:locationId(\d+)">
+		            <LocationDetail />
+	            </Route>
             </LocationProvider>
 
             <CustomerProvider>

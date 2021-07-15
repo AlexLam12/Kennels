@@ -20,9 +20,13 @@ export const LocationProvider = (props) => {
         })
         .then(getLocations)
     }
+    const getLocationById = (id) => {
+        return fetch(`http://localhost:8088/locations/${id}?_embed=employees&_embed=animals`)
+        .then(res => res.json()) // note we don't set anything on state here. Why?
+    }
     return (
         <LocationContext.Provider value = {{
-            locations, getLocations, addLocation
+            locations, getLocations, addLocation, getLocationById
         }}>
             {props.children}
         </LocationContext.Provider>
